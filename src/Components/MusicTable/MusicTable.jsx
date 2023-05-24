@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import './MusicTable.css'
+import axios from "axios";
 
-const MusicTable = ({ searchInput, parentSongs }) => {
+const MusicTable = ({ searchInput, parentSongs, getSongs }) => {
+
+  const deleteSong = async (key) => {
+    await axios.delete(`http://127.0.0.1:5000/api/songs/${key}`)
+    const updatedSongs = parentSongs.filter((song) => song.id !== key);
+    getSongs(updatedSongs);
+  }
 
   let songFilter = parentSongs.filter((song) => {
     const lowerSearchInput = searchInput ? searchInput.toLowerCase() : "";
@@ -23,8 +30,9 @@ const MusicTable = ({ searchInput, parentSongs }) => {
     } else if (lowerGenre.includes(lowerSearchInput)) {
       songMatch = true;
     }
-
+    
     return songMatch;
+    
   });
 
   return (
@@ -48,8 +56,10 @@ const MusicTable = ({ searchInput, parentSongs }) => {
           <td>{song.genre}</td>
           <td>{song.release_date}</td>
           <td>{song.running_time}</td>
+          <td><button onClick={() => deleteSong(song.id)} type="submit">Delete</button></td>
+          
         </tr>
-      ))}
+      ))};
       </tbody>
     </table>
   );

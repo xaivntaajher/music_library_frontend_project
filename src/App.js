@@ -19,7 +19,7 @@ function App() {
   }
 
     async function getSongs() {
-    const response = await axios.get('http://127.0.0.1:5000/api/songs');
+    let response = await axios.get('http://127.0.0.1:5000/api/songs');
     setSongs(response.data.songs);
   }
   
@@ -37,7 +37,7 @@ function App() {
       <h1 className='h1'>Filter Songs</h1>
       <div><SearchBar/></div>
       <h1 className='h1'>Song List</h1>
-      <div><MusicTable parentSongs={songs} /></div>
+      <div><MusicTable parentSongs={songs} getSongs={getSongs} /></div>
     </div>
   );
 }
