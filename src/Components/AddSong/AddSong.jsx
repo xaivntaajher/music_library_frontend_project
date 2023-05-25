@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './AddSong.css'
+import axios from 'axios';
 
 const AddSong = (props) => {
     const [title, setTitle] = useState('');
@@ -43,15 +44,15 @@ const AddSong = (props) => {
                     <label className='label'>Running Time</label>
                 </div>
                 <div className='align'>
-                    <input className='input' type="text" value={title} onChange={(event) => setTitle(event.target.value)} />
-                    <input className='input' type="text" value={artist} onChange={(event) => setArtist(event.target.value)} />
-                    <input className='input' type="text" value={album} onChange={(event) => setAlbum(event.target.value)} />
-                    <input className='input' type="text" value={releaseDate} onChange={(event) => setReleaseDate(event.target.value)} />
-                    <input className='input' type="text" value={genre} onChange={(event) => setGenre(event.target.value)} />
-                    <input className='input' type="text" value={runningTime} onChange={(event) => setRunningTime(event.target.value)} />
+                    <input className='input' data-cy="add-title" type="text" value={title} onChange={(event) => setTitle(event.target.value)} />
+                    <input className='input' data-cy="add-artist" type="text" value={artist} onChange={(event) => setArtist(event.target.value)} />
+                    <input className='input' data-cy="add-album" type="text" value={album} onChange={(event) => setAlbum(event.target.value)} />
+                    <input className='input' data-cy="add-release-date" type="text" value={releaseDate} onChange={(event) => setReleaseDate(event.target.value)} />
+                    <input className='input' data-cy="add-genre" type="text" value={genre} onChange={(event) => setGenre(event.target.value)} />
+                    <input className='input' data-cy="add-running-time" type="text" value={runningTime} onChange={(event) => setRunningTime(event.target.value)} />
                 </div>
                 <div className='button'>
-                    <button type="submit" >Add</button>
+                    <button data-cy="add-btn" type="submit" >Add</button>
                 </div>
             </div>
         </form>
